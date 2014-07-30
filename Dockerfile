@@ -13,7 +13,8 @@ RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu trusty m
 # updating & upgrade
 RUN (DEBIAN_FRONTEND=noninteractive apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -q && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y -q )
 
-RUN (alias adduser='useradd' && DEBIAN_FRONTEND=noninteractive apt-get -y -q install supervisor cron x264 mysql-server)
+RUN ln -s -f /bin/true /usr/bin/chfn
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y -q install supervisor cron x264 mysql-server
 
 
 #RUN make-ssl-cert generate-default-snakeoil --force-overwrite
