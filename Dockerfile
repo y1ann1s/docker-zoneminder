@@ -9,7 +9,6 @@ ENV HOME /root
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
-RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu trusty main " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q x264 mysql-server \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
