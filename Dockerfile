@@ -74,7 +74,7 @@ RUN rm -R /var/www/html
 EXPOSE 80
 
 #creatian of volume 
-VOLUME /var/www/zm/
+#VOLUME /var/www/zm/
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
