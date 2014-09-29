@@ -12,6 +12,11 @@
  DEBIAN_FRONTEND=noninteractive apt-get install -y -q zoneminder
 
  mysql -u root -pmysqlpsswd < /usr/share/zoneminder/db/zm_create.sql
+ 
+ #to clear some data before saving this layer ...a docker image
+ apt-get clean
+ rm -rf /tmp/* /var/tmp/*
+ rm -rf /var/lib/apt/lists/*
 
 killall mysqld
 sleep 10s
