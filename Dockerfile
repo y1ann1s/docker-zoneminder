@@ -1,7 +1,7 @@
 #name of container: docker-zoneminder
 #versison of container: 0.5.1
 FROM quantumobject/docker-baseimage
-MAINTAINER Angel Rodriguez  "angelrr7702@gmail.com"
+MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 # Set correct environment variables.
 ENV HOME /root
