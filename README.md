@@ -1,7 +1,7 @@
 docker-zoneminder
 =================
 
-container running zoneminder v1.26.5
+container running zoneminder v1.27.99.0
 
 
 To run the container :
