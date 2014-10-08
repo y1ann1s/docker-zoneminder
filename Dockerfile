@@ -10,7 +10,12 @@ ENV HOME /root
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
 RUN add-apt-repository ppa:iconnor/zoneminder-master
-RUN apt-get update && apt-get install -y -q x264 mysql-server \
+RUN apt-get update && apt-get install -y -q x264 \
+                                        mysql-server  \
+                                        libjpeg8-dev  \
+                                        libjpeg8 \
+                                        libvlc-dev  \
+                                        libvlccore-dev\
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
