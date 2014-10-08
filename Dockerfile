@@ -67,7 +67,6 @@ RUN cd /usr/src \
     
 RUN echo "!/bin/sh ntpdate ntp.ubuntu.com" >> /etc/cron.daily/ntpdate \
     && chmod 750 /etc/cron.daily/ntpdate
-RUN rm -R /var/www/html
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
