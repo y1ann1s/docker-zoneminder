@@ -9,6 +9,7 @@ ENV HOME /root
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
+RUN add-apt-repository ppa:iconnor/zoneminder-master
 RUN apt-get update && apt-get install -y -q x264 mysql-server \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
@@ -64,8 +65,8 @@ RUN cd /usr/src \
     && mv cambozola-0.935/dist/cambozola.jar /usr/share/zoneminder  \
     && rm /usr/src/cambozola-latest.tar.gz
     
-RUN echo "!/bin/sh ntpdate ntp.ubuntu.com" >> /etc/cron.daily/ntpdate
-RUN chmod 755 /etc/cron.daily/ntpdate
+RUN echo "!/bin/sh ntpdate ntp.ubuntu.com" >> /etc/cron.daily/ntpdate \
+    && chmod 750 /etc/cron.daily/ntpdate
 RUN rm -R /var/www/html
 
 # to allow access from outside of the container  to the container service
