@@ -20,6 +20,11 @@ RUN apt-get update && apt-get install -y -q x264 \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
 
+#install ffmpeg
+copy ffmpeg.sh /tmp/ffmpeg.sh
+RUN chmod +x /tmp/ffmpeg.sh \
+    && /bin/bash -c /tmp/ffmpeg.sh
+
 # to add mysqld deamon to runit
 RUN mkdir /etc/service/mysqld
 COPY mysqld.sh /etc/service/mysqld/run
