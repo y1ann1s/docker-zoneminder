@@ -10,12 +10,12 @@ ENV HOME /root
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
 RUN add-apt-repository ppa:iconnor/zoneminder-master
-RUN apt-get update && apt-get install -y -q x264 \
+RUN apt-get update && apt-get install -y -q software-properties-common \
+                                        python-software-properties \
                                         mysql-server  \
-                                        libjpeg8-dev  \
-                                        libjpeg8 \
                                         libvlc-dev  \
                                         libvlccore-dev\
+                                        vlc \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -60,10 +60,7 @@ COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
-#for zoneminder, apache2 configuration and others files ..
-#RUN make-ssl-cert generate-default-snakeoil --force-overwrite
-#RUN a2enmod ssl
-#RUN a2ensite default-ssl
+
 RUN mkdir -p /etc/apache2/conf.d
 RUN ln -s /etc/zm/apache.conf /etc/apache2/conf.d/zoneminder.conf
 RUN ln -s /etc/zm/apache.conf /etc/apache2/conf-enabled/zoneminder.conf
@@ -81,9 +78,6 @@ RUN echo "!/bin/sh ntpdate ntp.ubuntu.com" >> /etc/cron.daily/ntpdate \
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 80
-
-#creatian of volume 
-#VOLUME /var/www/zm/
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
