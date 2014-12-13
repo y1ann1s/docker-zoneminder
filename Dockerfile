@@ -9,7 +9,7 @@ ENV HOME /root
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
-RUN add-apt-repository ppa:iconnor/zoneminder-master
+RUN add-apt-repository ppa:iconnor/zoneminder
 RUN apt-get update && apt-get install -y -q software-properties-common \
                                         python-software-properties \
                                         mysql-server  \
@@ -20,10 +20,11 @@ RUN apt-get update && apt-get install -y -q software-properties-common \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
 
+#remove temporal to fix some other problem and check others .. 
 #install ffmpeg
-copy ffmpeg.sh /tmp/ffmpeg.sh
-RUN chmod +x /tmp/ffmpeg.sh \
-    && /bin/bash -c /tmp/ffmpeg.sh
+#copy ffmpeg.sh /tmp/ffmpeg.sh
+#RUN chmod +x /tmp/ffmpeg.sh \
+#    && /bin/bash -c /tmp/ffmpeg.sh
 
 # to add mysqld deamon to runit
 RUN mkdir /etc/service/mysqld
