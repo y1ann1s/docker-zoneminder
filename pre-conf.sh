@@ -18,6 +18,12 @@
  echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
  
+ #to fix problem with skin file
+ sed -i '309d' /usr/share/zoneminder/skins/flat/js/skin.js
+ sed -i '309d' /usr/share/zoneminder/skins/flat/js/skin.js
+ sed -i '309d' /usr/share/zoneminder/skins/flat/js/skin.js
+ sed -i '309d' /usr/share/zoneminder/skins/flat/js/skin.js
+ 
  #to clear some data before saving this layer ...a docker image
  rm -R /var/www/html
  rm /etc/apache2/sites-enabled/000-default.conf
