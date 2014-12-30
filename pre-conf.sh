@@ -20,6 +20,7 @@
  
  #to clear some data before saving this layer ...a docker image
  rm -R /var/www/html
+ rm /etc/apache2/sites-enabled/000-default.conf
  apt-get clean
  rm -rf /tmp/* /var/tmp/*
  rm -rf /var/lib/apt/lists/*
