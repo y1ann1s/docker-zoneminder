@@ -14,4 +14,4 @@ mkdir -p $RUNDIR && chown www-data:www-data $RUNDIR
 mkdir -p $TMPDIR && chown www-data:www-data $TMPDIR
 
 exec 2>&1
-exec $command start --pid /run/zm/zm.pid >>/var/log/zm.log
+exec $command start --pid /var/run/zm/zm.pid >>/var/log/zm.log
