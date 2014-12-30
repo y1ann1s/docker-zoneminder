@@ -7,9 +7,8 @@ if [ -f /etc/configured ]; then
         echo 'already configured'
 else
         #configuration for zoneminder 
-        chown -R www-data:www-data /var/cache/zoneminder/events
-        chown -R www-data:www-data /var/cache/zoneminder/images
-        chown -R www-data:www-data /var/cache/zoneminder/temp
+        chown -R root:www-data /var/cache/zoneminder
+        chmod -R 770 /var/cache/zoneminder
         
         #needed to fix problem with ubuntu ... and cron 
         update-locale
