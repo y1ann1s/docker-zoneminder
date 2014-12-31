@@ -8,7 +8,7 @@ RUNDIR=/var/run/zm
 TMPDIR=/tmp/zm
 command="$ZM_PATH_BIN/zmpkg.pl"
 
-sleep 10
+svwaitup 3 /etc/service/apache2 /etc/service/mysqld || exit 1
 
 mkdir -p $RUNDIR && chown www-data:www-data $RUNDIR
 mkdir -p $TMPDIR && chown www-data:www-data $TMPDIR
