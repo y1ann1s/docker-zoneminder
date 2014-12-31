@@ -3,4 +3,5 @@
 # `/sbin/setuser mysql` runs the given command as the user `mysql`.
 # If you omit that part, the command will be run as root.
 
-exec /sbin/setuser mysql /usr/bin/mysqld_safe >>/var/log/mysqld.log 2>&1
+exec 2>&1
+exec /sbin/setuser mysql /usr/bin/mysqld_safe >>/var/log/mysqld.log 
