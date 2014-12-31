@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ### In apache2.sh (make sure this file is chmod +x):
 # `/sbin/setuser www-data` runs the given command as the user `www-data`.
 # If you omit that part, the command will be run as root.
