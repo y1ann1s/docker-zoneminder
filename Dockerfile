@@ -29,20 +29,17 @@ RUN apt-get update && apt-get install -y -q software-properties-common \
 # to add mysqld deamon to runit
 RUN mkdir /etc/service/mysqld
 COPY mysqld.sh /etc/service/mysqld/run
-COPY finish_mysqld.sh /etc/service/mysqld/finish
-RUN chmod +x /etc/service/mysqld/run && chmod +x /etc/service/mysqld/finish
+RUN chmod +x /etc/service/mysqld/run
 
 # to add apache2 deamon to runit
 RUN mkdir /etc/service/apache2
 COPY apache2.sh /etc/service/apache2/run
-COPY finish_apache2.sh /etc/service/apache2/finish
-RUN chmod +x /etc/service/apache2/run && chmod +x /etc/service/apache2/finish
+RUN chmod +x /etc/service/apache2/run
 
 # to add apache2 deamon to runit
 RUN mkdir /etc/service/zm
 COPY zm.sh /etc/service/zm/run
-COPY finish_zm.sh /etc/service/zm/finish
-RUN chmod +x /etc/service/zm/run && chmod +x /etc/service/zm/finish
+RUN chmod +x /etc/service/zm/run
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
