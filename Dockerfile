@@ -36,10 +36,9 @@ RUN mkdir /etc/service/apache2
 COPY apache2.sh /etc/service/apache2/run
 RUN chmod +x /etc/service/apache2/run
 
-# to add apache2 deamon to runit
-RUN mkdir /etc/service/zm
-COPY zm.sh /etc/service/zm/run
-RUN chmod +x /etc/service/zm/run
+# to add zm deamon to runit
+COPY zm.sh /sbin/zm.sh
+RUN chmod +x /sbin/zm.sh
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
