@@ -4,6 +4,6 @@
 # If you omit that part, the command will be run as root.
 
 
-svwaitup 10 /etc/service/apache2 /etc/service/mysqld || exit 1
+sleep 10s
 
 /etc/init.d/zoneminder start  >>/var/log/zm.log 2>&1
