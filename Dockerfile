@@ -66,7 +66,7 @@ RUN adduser www-data video
 RUN cd /usr/src \
     && wget http://www.andywilcock.com/code/cambozola/cambozola-latest.tar.gz \
     && tar -xzvf /usr/src/cambozola-latest.tar.gz \
-    && mv cambozola-0.935/dist/cambozola.jar /usr/share/zoneminder  \
+    && mv cambozola-0.936/dist/cambozola.jar /usr/share/zoneminder  \
     && rm /usr/src/cambozola-latest.tar.gz
     
 RUN echo "!/bin/sh ntpdate ntp.ubuntu.com" >> /etc/cron.daily/ntpdate \
