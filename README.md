@@ -29,7 +29,7 @@ After that check with your browser at addresses plus the port assigined by docke
 
 Them log in with login/password : admin/admin , Please change password right away and check on-line [documentation][6] to configured zoneminder.
 
-note: ffmpeg was added but still need to add it to configuration can be done by options if know where it path of it.
+note: ffmpeg was added and path for it is /usr/local/bin/ffmpeg  if needed for configuration at options .
 
 ## More Info
 
