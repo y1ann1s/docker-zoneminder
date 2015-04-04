@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y -q software-properties-common \
                                         mysql-server  \
                                         libvlc-dev  \
                                         libvlccore-dev\
+                                        libapache2-mod-perl2 \
                                         vlc \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
