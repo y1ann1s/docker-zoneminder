@@ -68,7 +68,8 @@ RUN cd /usr/src \
     && wget http://www.andywilcock.com/code/cambozola/cambozola-latest.tar.gz \
     && tar -xzvf /usr/src/cambozola-latest.tar.gz \
     && mv cambozola-0.936/dist/cambozola.jar /usr/share/zoneminder  \
-    && rm /usr/src/cambozola-latest.tar.gz
+    && rm /usr/src/cambozola-latest.tar.gz \
+    && rm -R /usr/src/cambozola-0.936
     
 RUN echo "!/bin/sh ntpdate ntp.ubuntu.com" >> /etc/cron.daily/ntpdate \
     && chmod 750 /etc/cron.daily/ntpdate
