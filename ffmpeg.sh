@@ -19,6 +19,7 @@ FFMPEG_VERSION=2.6
  if [ ! -d "/usr/local/src/ffmpeg-${FFMPEG_VERSION}" ]; then
     wget "http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2"
     tar -xjf "ffmpeg-${FFMPEG_VERSION}.tar.bz2"
+    rm "ffmpeg-${FFMPEG_VERSION}.tar.bz2"
  fi
 
  cd "ffmpeg-${FFMPEG_VERSION}"
@@ -27,10 +28,11 @@ FFMPEG_VERSION=2.6
  checkinstall --pkgname=ffmpeg --pkgversion="5:${FFMPEG_VERSION}" --backup=no --deldoc=yes --default
 
 # chmod +x install-ffmpeg.sh
-# ./install-ffmpeg.sh
+# ./install-ffmpeg.sh 
  
  ffmpeg -version
  
+ rm -R "/usr/local/src/ffmpeg-${FFMPEG_VERSION}"
  apt-get clean 
  rm -rf /tmp/* /var/tmp/*
  rm -rf /var/lib/apt/lists/*
