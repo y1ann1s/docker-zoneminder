@@ -13,7 +13,7 @@ apt-get update && apt-get install -y -q build-essential \
                               pkg-config \
                               netcat 
                               
-FFMPEG_VERSION=2.6
+FFMPEG_VERSION=2.7.2
 
  cd /usr/local/src
  if [ ! -d "/usr/local/src/ffmpeg-${FFMPEG_VERSION}" ]; then
