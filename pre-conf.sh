@@ -15,7 +15,7 @@
  mysql -u root -pmysqlpsswd < /usr/share/zoneminder/db/zm_create.sql
  
  #to fix error relate to ip address of container apache2
- echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
+ echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
  
  #to fix problem with skin file
