@@ -7,7 +7,7 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted universe" >> /etc/apt/sources.list
 RUN add-apt-repository ppa:iconnor/zoneminder-master
-RUN apt-get update && apt-get install -y -q software-properties-common \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q software-properties-common \
                                         python-software-properties \
                                         mysql-server  \
                                         libvlc-dev  \
