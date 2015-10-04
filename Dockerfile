@@ -1,11 +1,11 @@
 #name of container: docker-zoneminder
 #versison of container: 0.5.4
-FROM quantumobject/docker-baseimage
+FROM quantumobject/docker-baseimage:15.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu utopic-backports main restricted universe" >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted universe" >> /etc/apt/sources.list
 RUN add-apt-repository ppa:iconnor/zoneminder-master
 RUN apt-get update && apt-get install -y -q software-properties-common \
                                         python-software-properties \
