@@ -9,7 +9,6 @@
 
  echo "grant select,insert,update,delete on zm.* to 'zmuser'@localhost identified by 'zmpass'; flush privileges; " | mysql -u root -pmysqlpsswd
 
- sed -i 's*deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu utopic main*deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu trusty main*'  /etc/apt/sources.list.d/iconnor-ubuntu-zoneminder-master-utopic.list
  DEBIAN_FRONTEND=noninteractive apt-get update
  DEBIAN_FRONTEND=noninteractive apt-get install -y -q zoneminder
 
