@@ -18,6 +18,13 @@
  echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
  
+ #apache2 conf
+a2enmod cgi
+a2enconf zoneminder
+chown -R www-data:www-data /usr/share/zoneminder/
+a2enmod rewrite
+adduser www-data video
+ 
  #to clear some data before saving this layer ...a docker image
  rm -R /var/www/html
  rm /etc/apache2/sites-enabled/000-default.conf
