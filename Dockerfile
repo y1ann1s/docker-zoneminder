@@ -58,10 +58,6 @@ COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
-
-RUN mkdir -p /etc/apache2/conf.d
-RUN ln -s /etc/zm/apache.conf /etc/apache2/conf.d/zoneminder.conf
-RUN ln -s /etc/zm/apache.conf /etc/apache2/conf-enabled/zoneminder.conf
 RUN a2enmod cgi
 RUN adduser www-data video
 RUN cd /usr/src \
