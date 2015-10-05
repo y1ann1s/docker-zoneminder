@@ -9,8 +9,8 @@ if [ -f /etc/configured ]; then
         /sbin/zm.sh &
 else
         #configuration for zoneminder 
-        chown -R root:www-data /var/cache/zoneminder
-        chmod -R 770 /var/cache/zoneminder
+        chown -R root:www-data /var/cache/zoneminder /etc/zm/zm.conf
+        chmod -R 770 /var/cache/zoneminder /etc/zm/zm.conf
         
         #needed to fix problem with ubuntu ... and cron 
         update-locale
