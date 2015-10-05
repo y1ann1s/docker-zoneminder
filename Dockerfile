@@ -1,5 +1,5 @@
 #name of container: docker-zoneminder
-#versison of container: 0.5.4
+#versison of container: 0.5.6
 FROM quantumobject/docker-baseimage:15.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
@@ -58,8 +58,6 @@ COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
-RUN a2enmod cgi
-RUN adduser www-data video
 RUN cd /usr/src \
     && wget http://www.andywilcock.com/code/cambozola/cambozola-latest.tar.gz \
     && tar -xzvf /usr/src/cambozola-latest.tar.gz \
