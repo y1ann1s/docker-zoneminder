@@ -25,11 +25,11 @@ To run container use the command below:
 
 ## Accessing the Zoneminder applications:
 
-After that check with your browser at addresses plus the port assigined by docker:
+After that check with your browser at addresses plus the port assigned by docker:
 
   - **http://host_ip:port/zm/**
 
-Them log in with login/password : admin/admin , Please change password right away and check on-line [documentation][6] to configured zoneminder.
+Them log in with login/password : admin/admin , Please change password right away and check on-line [documentation][6] to configure zoneminder.
 
 note: ffmpeg was added and path for it is /usr/local/bin/ffmpeg  if needed for configuration at options .
 
