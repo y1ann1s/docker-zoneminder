@@ -39,7 +39,7 @@ About zoneminder [www.zoneminder.com][1]
 
 To help improve this container [quantumobject/docker-zoneminder][5]
 
-For additional info about us and our projects check our site [www.quantumobject.com][6]
+For additional info about us and our projects check our site [www.quantumobject.com][7]
 
 [1]:http://www.zoneminder.com/
 [2]:https://www.docker.com
@@ -47,4 +47,4 @@ For additional info about us and our projects check our site [www.quantumobject.
 [4]:http://docs.docker.com
 [5]:https://github.com/QuantumObject/docker-zoneminder
 [6]:http://www.zoneminder.com/wiki/index.php/Documentation
-[6]:http://www.quantumobject.com
+[7]:http://www.quantumobject.com
