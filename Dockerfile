@@ -61,7 +61,7 @@ VOLUME /var/backups
 RUN cd /usr/src \
     && wget http://www.andywilcock.com/code/cambozola/cambozola-latest.tar.gz \
     && tar -xzvf /usr/src/cambozola-latest.tar.gz \
-    && mv cambozola-0.936/dist/cambozola.jar /usr/share/zoneminder  \
+    && mv cambozola-0.936/dist/cambozola.jar /usr/share/zoneminder/www  \
     && rm /usr/src/cambozola-latest.tar.gz \
     && rm -R /usr/src/cambozola-0.936
     
