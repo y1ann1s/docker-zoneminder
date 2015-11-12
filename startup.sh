@@ -8,6 +8,8 @@ if [ -f /etc/configured ]; then
         #start external process that will wait for apache and mysql start to run one time 
         /sbin/zm.sh &
 else
+        #to fix problem with data.timezone that appear at 1.28.108 for some reason
+        sed  -i 's/\;date.timezone =/date.timezone = \"America\/New_York\"/' /etc/php5/apache2/php.ini
         #configuration for zoneminder 
         chown -R root:www-data /var/cache/zoneminder /etc/zm/zm.conf
         chmod -R 770 /var/cache/zoneminder /etc/zm/zm.conf
