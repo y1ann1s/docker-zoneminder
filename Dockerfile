@@ -22,7 +22,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q softw
 
 #remove temporal to fix some other problem and check others .. 
 #install ffmpeg
-copy ffmpeg.sh /tmp/ffmpeg.sh
+COPY ffmpeg.sh /tmp/ffmpeg.sh
 RUN chmod +x /tmp/ffmpeg.sh \
     && /bin/bash -c /tmp/ffmpeg.sh
 
