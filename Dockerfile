@@ -14,6 +14,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q softw
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
                                         vlc \
+                                        ntp \
+                                        ntpdate \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -65,7 +67,7 @@ RUN cd /usr/src \
     && rm /usr/src/cambozola-latest.tar.gz \
     && rm -R /usr/src/cambozola-0.936
     
-RUN echo "!/bin/sh ntpdate ntp.ubuntu.com" >> /etc/cron.daily/ntpdate \
+RUN echo "!/bin/sh ntpdate 0.ubuntu.pool.ntp.org" >> /etc/cron.daily/ntpdate \
     && chmod 750 /etc/cron.daily/ntpdate
 
 # to allow access from outside of the container  to the container service
