@@ -8,4 +8,5 @@ mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=${MEM:-4096M} tmpfs /dev/
 
 sleep 10s
 
+/etc/init.d/ntp start  >>/var/log/ntp.log 2>&1
 /etc/init.d/zoneminder start  >>/var/log/zm.log 2>&1
