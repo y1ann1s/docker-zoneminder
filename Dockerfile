@@ -15,6 +15,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q softw
                                         libapache2-mod-perl2 \
                                         vlc \
                                         ntp \
+                                        dialog \
                                         ntpdate \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
