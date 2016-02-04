@@ -24,7 +24,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q softw
 #remove temporal to fix some other problem and check others .. 
 #install ffmpeg
 COPY ffmpeg.sh /tmp/ffmpeg.sh
-RUN chmod +x /tmp/ffmpeg.sh \
+RUN chmod +x /tmp/ffmpeg.sh ; sync \
     && /bin/bash -c /tmp/ffmpeg.sh
 
 # to add mysqld deamon to runit
@@ -51,7 +51,7 @@ RUN chmod +x /etc/my_init.d/startup.sh
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
 COPY pre-conf.sh /sbin/pre-conf
-RUN chmod +x /sbin/pre-conf \
+RUN chmod +x /sbin/pre-conf ; sync \
     && /bin/bash -c /sbin/pre-conf \
     && rm /sbin/pre-conf
 
