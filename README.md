@@ -37,7 +37,7 @@ For live view via the web UI to work, you need to edit config -> paths, and chan
 
 "/cgi-bin/nph-zms"     to     "/zm/cgi-bin/nph-zms"
 
-and if you change System=> "Authenticate user logins to ZoneMinder" you at this moment need to change "Method used to relay authentication information " to "None" if this not done you will be unable to see live view. This only recommended if you are using https to protect password(This relate to a misconfiguraton or problem with this container still trying to find a better solutions).
+and if you change System=> "Authenticate user logins to ZoneMinder" you at this moment need to change "Method used to relay authentication information " to "None" if this not done you will be unable to see live view. This only recommended if you are using https to protect password(This relate to a misconfiguration or problem with this container still trying to find a better solutions).
 
 To access the container from the server that the container is running :
 
