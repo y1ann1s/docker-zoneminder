@@ -33,6 +33,12 @@ Them log in with login/password : admin/admin , Please change password right awa
 
 note: ffmpeg was added and path for it is /usr/local/bin/ffmpeg  if needed for configuration at options .
 
+For live view via the web UI to work, you need to edit config -> paths, and change:
+
+"/cgi-bin/nph-zms"     to     "/zm/cgi-bin/nph-zms"
+
+and if you change System=> "Authenticate user logins to ZoneMinder" you at this moment need to change "Method used to relay authentication information " to "None" if this not done you will be unable to see live view. This only recommended if you are using https to protect password(This relate to a misconfiguraton or problem with this container still trying to find a better solutions).
+
 To access the container from the server that the container is running :
 
     $ docker exec -it container_id /bin/bash
