@@ -19,9 +19,7 @@ To install docker in Ubuntu 15.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d --privileged=true -p 80 quantumobject/docker-zoneminder
-
---privileged=true  ==> needed to increase size of /dev/shm  inside of the container if there is better way to do it let me know.
+    $ docker run -d --shm-size=4096m -p 80 quantumobject/docker-zoneminder
 
 ## Accessing the Zoneminder applications:
 
