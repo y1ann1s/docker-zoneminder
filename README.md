@@ -21,6 +21,8 @@ To run container use the command below:
 
     $ docker run -d --shm-size=4096m -p 80 quantumobject/docker-zoneminder
 
+**  --shm-size=4096m  ==> work only after docker version 1.10 
+
 ## Accessing the Zoneminder applications:
 
 After that check with your browser at addresses plus the port assigned by docker:
@@ -36,6 +38,8 @@ For live view via the web UI to work, you need to edit config -> paths, and chan
 "/cgi-bin/nph-zms"     to     "/zm/cgi-bin/nph-zms"
 
 and if you change System=> "Authenticate user logins to ZoneMinder" you at this moment need to change "Method used to relay authentication information " to "None" if this not done you will be unable to see live view. This only recommended if you are using https to protect password(This relate to a misconfiguration or problem with this container still trying to find a better solutions).
+
+if timeline fail please check TimeZone at php.ini is the correct one for your server( default is America/New York).
 
 To access the container from the server that the container is running :
 
