@@ -8,9 +8,7 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted universe" >> /etc/apt/sources.list  \
       && echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main" >> /etc/apt/sources.list  \
       && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 776FFB04
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q software-properties-common \
-                                        python-software-properties \
-                                        mysql-server  \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q mysql-server  \
                                         libvlc-dev  \
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
