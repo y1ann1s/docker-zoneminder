@@ -5,8 +5,9 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted universe" >> /etc/apt/sources.list
-RUN add-apt-repository ppa:iconnor/zoneminder-master
+RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted universe" >> /etc/apt/sources.list  \
+      && echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main" >> /etc/apt/sources.list  \
+      && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 776FFB04
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q software-properties-common \
                                         python-software-properties \
                                         mysql-server  \
