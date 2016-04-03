@@ -44,7 +44,6 @@ if timeline fail please check TimeZone at php.ini is the correct one for your se
 To access the container from the server that the container is running :
 
     $ docker exec -it container_id /bin/bash
-    $ export TERM=xterm       #needed to execute some command correctly (nano,top)
 
 ## More Info
 
