@@ -48,8 +48,9 @@ RUN chmod +x /etc/service/apache2/run /etc/service/apache2/log/run \
 RUN mkdir -p /etc/service/zm  /var/log/zm ; sync 
 RUN mkdir /etc/service/zm/log
 COPY zm.sh /etc/service/zm/run
+COPY zmstop.sh /etc/service/zm/finish 
 COPY zm-log.sh /etc/service/zm/log/run
-RUN chmod +x /etc/service/zm/run /etc/service/zm/log/run \
+RUN chmod +x /etc/service/zm/run /etc/service/zm/log/run /etc/service/zm/finish \
     && cp /var/log/cron/config /var/log/zm/ \
     && chown -R nobody /var/log/zm
     
