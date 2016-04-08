@@ -1,15 +1,14 @@
 #name of container: docker-zoneminder
-#versison of container: 0.5.6
+#versison of container: 0.5.7
 FROM quantumobject/docker-baseimage:15.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted universe" >> /etc/apt/sources.list
-RUN add-apt-repository ppa:iconnor/zoneminder-master
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q software-properties-common \
-                                        python-software-properties \
-                                        mysql-server  \
+RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted universe" >> /etc/apt/sources.list  \
+      && echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main" >> /etc/apt/sources.list  \
+      && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 776FFB04
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q mysql-server  \
                                         libvlc-dev  \
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
@@ -28,18 +27,41 @@ RUN chmod +x /tmp/ffmpeg.sh ; sync \
     && /bin/bash -c /tmp/ffmpeg.sh
 
 # to add mysqld deamon to runit
-RUN mkdir /etc/service/mysqld
+RUN mkdir -p /etc/service/mysqld /var/log/mysqld ; sync 
+RUN mkdir /etc/service/mysqld/log
 COPY mysqld.sh /etc/service/mysqld/run
-RUN chmod +x /etc/service/mysqld/run
+COPY mysqld-log.sh /etc/service/mysqld/log/run
+RUN chmod +x /etc/service/mysqld/run /etc/service/mysqld/log/run \
+    && cp /var/log/cron/config /var/log/mysqld/ \
+    && chown -R mysql /var/log/mysqld
 
 # to add apache2 deamon to runit
-RUN mkdir /etc/service/apache2
+RUN mkdir -p /etc/service/apache2  /var/log/apache2 ; sync 
+RUN mkdir /etc/service/apache2/log
 COPY apache2.sh /etc/service/apache2/run
-RUN chmod +x /etc/service/apache2/run
+COPY apache2-log.sh /etc/service/apache2/log/run
+RUN chmod +x /etc/service/apache2/run /etc/service/apache2/log/run \
+    && cp /var/log/cron/config /var/log/apache2/ \
+    && chown -R www-data /var/log/apache2
 
 # to add zm deamon to runit
-COPY zm.sh /sbin/zm.sh
-RUN chmod +x /sbin/zm.sh
+RUN mkdir -p /etc/service/zm  /var/log/zm ; sync 
+RUN mkdir /etc/service/zm/log
+COPY zm.sh /etc/service/zm/run
+COPY zmstop.sh /etc/service/zm/finish 
+COPY zm-log.sh /etc/service/zm/log/run
+RUN chmod +x /etc/service/zm/run /etc/service/zm/log/run /etc/service/zm/finish \
+    && cp /var/log/cron/config /var/log/zm/ \
+    && chown -R nobody /var/log/zm
+    
+# to add ntp deamon to runit
+RUN mkdir -p /etc/service/ntp  /var/log/ntp ; sync 
+RUN mkdir /etc/service/ntp/log
+COPY ntp.sh /etc/service/ntp/run
+COPY ntp-log.sh /etc/service/ntp/log/run
+RUN chmod +x /etc/service/ntp/run /etc/service/ntp/log/run \
+    && cp /var/log/cron/config /var/log/ntp/ \
+    && chown -R nobody /var/log/ntp
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 

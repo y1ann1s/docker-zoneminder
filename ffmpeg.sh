@@ -16,7 +16,7 @@ apt-add-repository multiverse && apt-get update && apt-get install -y -q build-e
                               libmp3lame-dev \
                               netcat 
                               
-FFMPEG_VERSION=2.8.6
+FFMPEG_VERSION=3.0.1
 
  cd /usr/local/src
  if [ ! -d "/usr/local/src/ffmpeg-${FFMPEG_VERSION}" ]; then
