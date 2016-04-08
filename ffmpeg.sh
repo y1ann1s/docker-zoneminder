@@ -1,8 +1,9 @@
 #!/bin/sh
 
+echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main restricted universe multiverse" >> /etc/apt/sources.list
 apt-get update && apt-get install -y -q build-essential \
                               git-core \
-                              checkinstall \
+                              checkinstall \ 
                               yasm \
                               texi2html \
                               libvorbis-dev \
