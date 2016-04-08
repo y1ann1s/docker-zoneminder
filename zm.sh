@@ -5,4 +5,4 @@
 
 sv -w7 check apache2
 
-exec chpst -u root /etc/init.d/zoneminder start 2>&1
+exec chpst -u root /usr/bin/zmpkg.pl start 2>&1
