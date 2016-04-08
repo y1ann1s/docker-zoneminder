@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec chpst -u nobody svlogd -tt /var/log/zm/
+exec chpst -u root svlogd -tt /var/log/zm/
