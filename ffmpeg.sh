@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main multiverse" >> /etc/apt/sources.list
+echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` multiverse" >> /etc/apt/sources.list
 apt-get update && apt-get install -y -q build-essential \
                               git-core \
                               checkinstall \ 
