@@ -4,5 +4,5 @@
 # If you omit that part, the command will be run as root.
 
 sleep 7s
-
-exec chpst -u root /usr/bin/zmpkg.pl start 2>&1
+ 
+exec chpst -u root /usr/bin/zmpkg.pl start >>/var/log/zm/zm.log 2>&1
