@@ -2,20 +2,13 @@
 
 echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` multiverse" >> /etc/apt/sources.list
 apt-get update
-apt-get install -y -q build-essential \
-                              git-core \
-                              checkinstall \ 
-                              yasm \
-                              texi2html \
-                              libvorbis-dev \
-                              libx11-dev \
-                              libvpx-dev \
-                              libxfixes-dev \
-                              zlib1g-dev \
-                              pkg-config \
-                              libx264-dev \
-                              libfaac-dev \
-                              libmp3lame-dev \
+apt-get install -y -q build-essential  git-core \
+                              checkinstall yasm \
+                              texi2html libvorbis-dev \
+                              libx11-dev libvpx-dev \
+                              libxfixes-dev zlib1g-dev \
+                              pkg-config libx264-dev \
+                              libfaac-dev libmp3lame-dev \
                               netcat 
                               
 FFMPEG_VERSION=3.0.1
