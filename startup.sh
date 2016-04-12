@@ -12,6 +12,7 @@ else
         sed  -i 's/\;date.timezone =/date.timezone = \"America\/New_York\"/' /etc/php5/apache2/php.ini
         #configuration for zoneminder 
         chown -R root:www-data /var/cache/zoneminder /etc/zm/zm.conf
+        chown -R mysql:mysql /var/lib/mysql 
         chmod -R 770 /var/cache/zoneminder /etc/zm/zm.conf
         
         #needed to fix problem with ubuntu ... and cron 
