@@ -88,6 +88,8 @@ RUN cd /usr/src \
 RUN echo "!/bin/sh ntpdate 0.ubuntu.pool.ntp.org" >> /etc/cron.daily/ntpdate \
     && chmod 750 /etc/cron.daily/ntpdate
 
+
+VOLUME /var/lib/mysql /var/cache/zoneminder
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 80
