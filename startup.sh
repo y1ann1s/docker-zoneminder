@@ -20,6 +20,7 @@ else
           /usr/bin/mysqld_safe &
           sleep 7s
           mysqladmin -u root password mysqlpsswd
+          mysql -uroot -pmysqlpsswd -e 'set GLOBAL sql_mode = NO_ENGINE_SUBSTITUTION'
           mysqladmin -u root -pmysqlpsswd reload
           mysqladmin -u root -pmysqlpsswd create zm
           echo "grant select,insert,update,delete on zm.* to 'zmuser'@localhost identified by 'zmpass'; flush privileges; " | mysql -u root -pmysqlpsswd
