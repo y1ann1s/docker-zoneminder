@@ -12,6 +12,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q mysql
                                         libvlc-dev  \
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
+                                        php \
                                         libapache2-mod-php \
                                         vlc \
                                         ntp \
