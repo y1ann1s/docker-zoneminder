@@ -1,6 +1,6 @@
 #name of container: docker-zoneminder
 #versison of container: 0.5.8
-FROM quantumobject/docker-baseimage:16.04
+FROM quantumobject/docker-baseimage:15.10
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
@@ -12,8 +12,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q mysql
                                         libvlc-dev  \
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
-                                        php \
-                                        libapache2-mod-php \
                                         vlc \
                                         ntp \
                                         dialog \
