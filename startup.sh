@@ -13,8 +13,6 @@ else
         #configuration for zoneminder
         #trays to fix problem with https://github.com/QuantumObject/docker-zoneminder/issues/22
         chown www-data /dev/shm
-        #fix problem relate to update mysql
-        echo "sql_mode = NO_ENGINE_SUBSTITUTION" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         #this only happends if -V was used and data was not from another container for that reason need to recreate the db.
         if [ ! -f /var/lib/mysql/ibdata1 ]; then
           mysql_install_db
