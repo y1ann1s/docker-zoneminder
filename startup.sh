@@ -13,6 +13,8 @@ else
         #configuration for zoneminder
         #trays to fix problem with https://github.com/QuantumObject/docker-zoneminder/issues/22
         chown www-data /dev/shm
+        #fix problem relate to update mysql
+        echo "sql_mode = NO_ENGINE_SUBSTITUTION" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         #this only happends if -V was used and data was not from another container for that reason need to recreate the db.
         if [ ! -f /var/lib/mysql/ibdata1 ]; then
           mysql_install_db
@@ -20,7 +22,6 @@ else
           /usr/bin/mysqld_safe &
           sleep 7s
           mysqladmin -u root password mysqlpsswd
-          mysql -uroot -pmysqlpsswd -e 'set GLOBAL sql_mode = NO_ENGINE_SUBSTITUTION'
           mysqladmin -u root -pmysqlpsswd reload
           mysqladmin -u root -pmysqlpsswd create zm
           echo "grant select,insert,update,delete on zm.* to 'zmuser'@localhost identified by 'zmpass'; flush privileges; " | mysql -u root -pmysqlpsswd
