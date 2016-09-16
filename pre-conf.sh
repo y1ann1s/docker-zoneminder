@@ -18,7 +18,7 @@ mysql_install_db
  echo "grant select,insert,update,delete on zm.* to 'zmuser'@localhost identified by 'zmpass'; flush privileges; " | mysql -u root -pmysqlpsswd
 
  DEBIAN_FRONTEND=noninteractive apt-get update
- DEBIAN_FRONTEND=noninteractive apt-get install -y -q php-gd zoneminder
+ DEBIAN_FRONTEND=noninteractive apt-get install -y -q php5-gd zoneminder
 
  mysql -u root -pmysqlpsswd < /usr/share/zoneminder/db/zm_create.sql
  
