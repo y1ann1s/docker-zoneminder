@@ -1,5 +1,10 @@
 #!/bin/bash
 
+ #fix problem relate to update mysql
+ echo "sql_mode = NO_ENGINE_SUBSTITUTION" >> /etc/mysql/mysql.conf.d/mysqld.cnf
+ cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf
+ cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
+ 
 #initial conf for mysql
 mysql_install_db
 #for configuriing database

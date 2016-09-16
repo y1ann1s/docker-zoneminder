@@ -10,7 +10,10 @@ if [ -f /etc/configured ]; then
 else
         #to fix problem with data.timezone that appear at 1.28.108 for some reason
         sed  -i 's/\;date.timezone =/date.timezone = \"America\/New_York\"/' /etc/php5/apache2/php.ini
-        #configuration for zoneminder 
+        #configuration for zoneminder
+        #trays to fix problem with https://github.com/QuantumObject/docker-zoneminder/issues/22
+        chown www-data /dev/shm
+        cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
         #this only happends if -V was used and data was not from another container for that reason need to recreate the db.
         if [ ! -f /var/lib/mysql/ibdata1 ]; then
           mysql_install_db
