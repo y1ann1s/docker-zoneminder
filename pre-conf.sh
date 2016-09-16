@@ -7,7 +7,6 @@ mysql_install_db
  sleep 10s
 
  mysqladmin -u root password mysqlpsswd
- mysql -uroot -pmysqlpsswd -e 'set GLOBAL sql_mode = NO_ENGINE_SUBSTITUTION'
  mysqladmin -u root -pmysqlpsswd reload
  mysqladmin -u root -pmysqlpsswd create zm
 
