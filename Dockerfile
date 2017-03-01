@@ -8,7 +8,7 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted universe" >> /etc/apt/sources.list  \
       && echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main" >> /etc/apt/sources.list  \
       && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 776FFB04
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q mysql-server  \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends mysql-server  \
                                         libvlc-dev  \
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
@@ -16,15 +16,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q mysql
                                         ntp \
                                         dialog \
                                         ntpdate \
+                                        ffmpeg \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
-
-#remove temporal to fix some other problem and check others .. 
-#install ffmpeg
-COPY ffmpeg.sh /tmp/ffmpeg.sh
-RUN chmod +x /tmp/ffmpeg.sh ; sync \
-    && /bin/bash -c /tmp/ffmpeg.sh
 
 # to add mysqld deamon to runit
 RUN mkdir -p /etc/service/mysqld /var/log/mysqld ; sync 
