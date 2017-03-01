@@ -1,6 +1,6 @@
 #name of container: docker-zoneminder
-#versison of container: 0.5.8
-FROM quantumobject/docker-baseimage:15.10
+#versison of container: 0.5.9
+FROM quantumobject/docker-baseimage:16.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
