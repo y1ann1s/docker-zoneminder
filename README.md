@@ -31,7 +31,7 @@ After that check with your browser at addresses plus the port assigned by docker
 
 Them log in with login/password : admin/admin , Please change password right away and check on-line [documentation][6] to configure zoneminder.
 
-note: ffmpeg was added and path for it is /usr/local/bin/ffmpeg  if needed for configuration at options .
+note: ffmpeg was added and path for it is /usr/bin/ffmpeg  if needed for configuration at options .
 
 For live view via the web UI to work, you need to edit config -> paths, and change:
 
