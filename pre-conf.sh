@@ -6,7 +6,8 @@
  cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
  
 #initial conf for mysql
-mysql_install_db
+#mysql_install_db
+#mysqld --initialize
 #for configuriing database
 /usr/bin/mysqld_safe &
  sleep 10s
@@ -18,7 +19,7 @@ mysql_install_db
  echo "grant select,insert,update,delete on zm.* to 'zmuser'@localhost identified by 'zmpass'; flush privileges; " | mysql -u root -pmysqlpsswd
 
  DEBIAN_FRONTEND=noninteractive apt-get update
- DEBIAN_FRONTEND=noninteractive apt-get install -y -q php5-gd zoneminder
+ DEBIAN_FRONTEND=noninteractive apt-get install -y -q php-gd zoneminder
 
  mysql -u root -pmysqlpsswd < /usr/share/zoneminder/db/zm_create.sql
  
