@@ -7,7 +7,7 @@
  
 #initial conf for mysql
 #mysql_install_db
-#mysqld --initialize
+mysqld --initialize
 #for configuriing database
 /usr/bin/mysqld_safe &
  sleep 10s
