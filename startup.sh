@@ -16,6 +16,7 @@ else
         cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
         #this only happends if -V was used and data was not from another container for that reason need to recreate the db.
         if [ ! -f /var/lib/mysql/ibdata1 ]; then
+          chown -R mysql:mysql /var/lib/mysql 
           #mysql_install_db
           mysqld --initialize
           #create database for zm
