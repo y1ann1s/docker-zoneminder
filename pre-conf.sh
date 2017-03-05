@@ -1,5 +1,8 @@
 #!/bin/bash
 
+chown -R mysql:mysql /var/lib/mysql 
+
+
  #fix problem relate to update mysql
  echo "sql_mode = NO_ENGINE_SUBSTITUTION" >> /etc/mysql/mysql.conf.d/mysqld.cnf
  cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf
