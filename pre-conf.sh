@@ -11,7 +11,7 @@ chown -R mysql:mysql /var/lib/mysql
  
 #initial conf for mysql
 #mysql_install_db
-mysqld --initialize
+mysqld --initialize-insecure --user=mysql
 #for configuriing database
 /usr/bin/mysqld_safe &
  sleep 10s
