@@ -4,6 +4,7 @@ chown -R mysql:mysql /var/lib/mysql
 
 
  #fix problem relate to update mysql
+ rm /etc/mysql/my.cnf
  echo "sql_mode = NO_ENGINE_SUBSTITUTION" >> /etc/mysql/mysql.conf.d/mysqld.cnf
  cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf
  cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
