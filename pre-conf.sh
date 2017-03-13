@@ -1,7 +1,7 @@
 #!/bin/bash
 
 chown -R mysql:mysql /var/lib/mysql 
-
+rm -R /var/lib/mysql/* 
 
  #fix problem relate to update mysql
  rm /etc/mysql/my.cnf
@@ -11,7 +11,7 @@ chown -R mysql:mysql /var/lib/mysql
  
 #initial conf for mysql
 #mysql_install_db
-mysqld --initialize-insecure --user=mysql
+mysqld --initialize-insecure
 #for configuriing database
 /usr/bin/mysqld_safe &
  sleep 10s
