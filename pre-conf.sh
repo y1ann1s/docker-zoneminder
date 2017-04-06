@@ -11,7 +11,7 @@ rm -R /var/lib/mysql/*
  
 #initial conf for mysql
 #mysql_install_db
-mysqld --initialize-insecure
+mysqld --initialize-insecure=on
 #for configuriing database
 /usr/bin/mysqld_safe &
  sleep 10s
