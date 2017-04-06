@@ -18,7 +18,7 @@ else
         if [ ! -f /var/lib/mysql/ibdata1 ]; then
           chown -R mysql:mysql /var/lib/mysql 
           #mysql_install_db
-          mysqld --initialize
+          mysqld --initialize-insecure=on
           #create database for zm
           /usr/bin/mysqld_safe &
           sleep 7s
