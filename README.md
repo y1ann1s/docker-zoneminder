@@ -31,7 +31,7 @@ or in yml:
 
 environment:
   
-   - TZ=Europe/London
+   \- TZ=Europe/London
    
 default value is America/New_York .   
 
