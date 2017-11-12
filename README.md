@@ -25,15 +25,15 @@ To run container use the command below:
 
 ## Set the timezone per environment variable:
 
-  -e TZ=Europe/London
+    -e TZ=Europe/London
   
 or in yml:
 
-environment:
+  environment:
   
-   \- TZ=Europe/London
+     \- TZ=Europe/London
    
-default value is America/New_York .   
+Default value is America/New_York .   
 
 ## Accessing the Zoneminder applications:
 
