@@ -3,11 +3,13 @@
 FROM quantumobject/docker-baseimage:16.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
+ENV TZ America/New_York
+
 # Update the container
 # Installation of nesesary package/software for this containers...
 RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main" >> /etc/apt/sources.list  \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 776FFB04 \
-    && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends mariadb-server \
+    && echo $TZ > /etc/timezone && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends mariadb-server \
 
                                         libvlc-dev  \
                                         libvlccore-dev\
