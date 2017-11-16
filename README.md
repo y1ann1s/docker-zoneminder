@@ -23,6 +23,18 @@ To run container use the command below:
 
 **  --shm-size=4096m  ==> work only after docker version 1.10 
 
+## Set the timezone per environment variable:
+
+    -e TZ=Europe/London
+  
+or in yml:
+
+  environment:
+  
+     - TZ=Europe/London
+   
+Default value is America/New_York .   
+
 ## Accessing the Zoneminder applications:
 
 After that check with your browser at addresses plus the port assigned by docker:
