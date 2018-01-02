@@ -1,7 +1,7 @@
 #name of container: docker-zoneminder
 #versison of container: 0.5.9
 FROM quantumobject/docker-baseimage:16.04
-MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
+LABEL maintainer="Angel Rodriguez <angel@quantumobject.com>"
 
 ENV TZ America/New_York
 
@@ -10,7 +10,6 @@ ENV TZ America/New_York
 RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main" >> /etc/apt/sources.list  \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 776FFB04 \
     && echo $TZ > /etc/timezone && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends mariadb-server \
-
                                         libvlc-dev  \
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
@@ -23,12 +22,6 @@ RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /et
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
 
-# to add mysqld deamon to runit
-RUN mkdir -p /etc/service/mysqld /var/log/mysqld ; sync 
-COPY mysqld.sh /etc/service/mysqld/run
-RUN chmod +x /etc/service/mysqld/run \
-    && cp /var/log/cron/config /var/log/mysqld/ \
-    && chown -R mysql /var/log/mysqld
 
 # to add apache2 deamon to runit
 RUN mkdir -p /etc/service/apache2  /var/log/apache2 ; sync 
@@ -41,13 +34,6 @@ RUN chmod +x /etc/service/apache2/run \
 RUN mkdir -p /var/log/zm ; sync 
 COPY zm.sh /sbin/zm.sh
 RUN chmod +x /sbin/zm.sh
-    
-# to add ntp deamon to runit
-RUN mkdir -p /etc/service/ntp  /var/log/ntp ; sync 
-COPY ntp.sh /etc/service/ntp/run
-RUN chmod +x /etc/service/ntp/run \
-    && cp /var/log/cron/config /var/log/ntp/ \
-    && chown -R nobody /var/log/ntp
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
@@ -75,12 +61,8 @@ RUN cd /usr/src \
     && mv cambozola-0.936/dist/cambozola.jar /usr/share/zoneminder/www  \
     && rm /usr/src/cambozola-latest.tar.gz \
     && rm -R /usr/src/cambozola-0.936
-    
-RUN echo "!/bin/sh ntpdate 0.ubuntu.pool.ntp.org" >> /etc/cron.daily/ntpdate \
-    && chmod 750 /etc/cron.daily/ntpdate
 
-
-VOLUME /var/lib/mysql /var/cache/zoneminder
+VOLUME /var/cache/zoneminder
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 80
