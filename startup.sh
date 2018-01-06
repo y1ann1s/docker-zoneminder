@@ -7,15 +7,18 @@ set -e
 chown www-data /dev/shm
 mkdir -p /var/run/zm
 chown www-data:www-data /var/run/zm
+
 #to fix problem with data.timezone that appear at 1.28.108 for some reason
 sed  -i "s|\;date.timezone =|date.timezone = \"${TZ:-America/New_York}\"|" /etc/php/7.0/apache2/php.ini
+
+#wait until MySQL container start
+sleep 45s
+
 if [ -f /var/cache/zoneminder/configured ]; then
         echo 'already configured'
         
         /sbin/zm.sh&
 else
-        #wait until MySQL container start
-        sleep 45s
         
         #configuration for zoneminder
         #cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
