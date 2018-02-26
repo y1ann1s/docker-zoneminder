@@ -39,7 +39,7 @@ Default value is America/New_York .
 
 After that check with your browser at addresses plus the port assigned by docker:
 
-- **<http://host_ip:port/zm/**>
+- <http://host_ip:port/zm/>
 
 Them log in with login/password : admin/admin , Please change password right away and check on-line [documentation][6] to configure zoneminder.
 
@@ -165,13 +165,13 @@ networks:
 ```
 
 above docker-compose.yml stack example asume a directory structure at $PWD as is
-$PWD/mysql (MySQL Data, drwxr-xr-x 6   27 27)
-$PWD/zoneminder (directory for images, drwxrwx--- 5 root 33)
-$PWD/backup (directory for backups, drwxr-xr-x 2 root root)
-$PWD/conf (configuration files, drwxrwxr-x  7 1000 1000, only conf/mysql/my.cnf is required)
-conf/mysql/my.cnf look like:
 
 ```bash
+$PWD/mysql      # (MySQL Data, drwxr-xr-x 6   27 27)
+$PWD/zoneminder # (directory for images, drwxrwx--- 5 root 33)
+$PWD/backup     # (directory for backups, drwxr-xr-x 2 root root)
+$PWD/conf       # (configuration files, drwxrwxr-x  7 1000 1000, only conf/mysql/my.cnf is required)
+cat conf/mysql/my.cnf
 # For advice on how to change settings please see
 # http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
 
@@ -222,7 +222,7 @@ docker service ls
 the image used for the load balancer is modified version of dockercloud/haproxy specially targeted for
 using {{.Task.Slot}} placeholder in DNS name resolution, see more details at
 
-- **<https://github.com/marcelo-ochoa/dockercloud-haproxy.git**>
+- <https://github.com/marcelo-ochoa/dockercloud-haproxy.git>
 
 ## More Info
 
