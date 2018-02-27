@@ -19,16 +19,20 @@ $ sudo wget -qO- <https://get.docker.com/> | sh
 
 To run container use the command below:
 
-$ docker run -d --shm-size=4096m -p 80:80 quantumobject/docker-zoneminder:1.31.1
+```bash
+docker run -d --shm-size=4096m -p 80:80 quantumobject/docker-zoneminder:1.31.1
+```
 
 **  --shm-size=4096m  ==> work only after docker version 1.10
 
 To run with MySQL in a separate container use the command below:
 
-$ docker network create net
-$ docker run -d -e TZ=America/Argentina/Buenos_Aires -e MYSQL_USER=zmuser -e MYSQL_PASSWORD=zmpass -e MYSQL_DATABASE=zm -e MYSQL_ROOT_PASSWORD=mysqlpsswd -e MYSQL_ROOT_HOST=% --net net --name db mysql/mysql-server:5.7
-$ echo "wait until MySQL startup..."
-$ docker run -d -e TZ=America/Argentina/Buenos_Aires -e ZM_DB_HOST=db --net net --name zm -p 80:80 quantumobject/docker-zoneminder:1.31.1
+```bash
+docker network create net
+docker run -d -e TZ=America/Argentina/Buenos_Aires -e MYSQL_USER=zmuser -e MYSQL_PASSWORD=zmpass -e MYSQL_DATABASE=zm -e MYSQL_ROOT_PASSWORD=mysqlpsswd -e MYSQL_ROOT_HOST=% --net net --name db mysql/mysql-server:5.7
+echo "wait until MySQL startup..."
+docker run -d -e TZ=America/Argentina/Buenos_Aires -e ZM_DB_HOST=db --net net --name zm -p 80:80 quantumobject/docker-zoneminder:1.31.1
+```
 
 ## Set the timezone per environment variable
 
