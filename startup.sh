@@ -27,6 +27,7 @@ else
           echo "grant select,insert,update,delete,create,alter,lock on zm.* to 'zmuser'@localhost identified by 'zmpass'; flush privileges; " | mysql -u root -pmysqlpsswd
           echo "SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION';" | mysql -u root -pmysqlpsswd
           mysql -u root -pmysqlpsswd < /usr/share/zoneminder/db/zm_create.sql
+          mysql -e "grant select,insert,update,delete,create,alter,lock tables on zm.* to 'zmuser'@localhost identified by 'zmpass';" -u root -pmysqlpsswd
           killall mysqld
           sleep 5s
         fi
