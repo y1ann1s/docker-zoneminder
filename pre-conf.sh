@@ -20,6 +20,8 @@ mysql_install_db
 
  mysql -u root -pmysqlpsswd < /usr/share/zoneminder/db/zm_create.sql
  
+ mysql -e "grant select,insert,update,delete,create,alter,lock tables on zm.* to 'zmuser'@localhost identified by 'zmpass';" -u root -pmysqlpsswd
+ 
  #to fix error relate to ip address of container apache2
  echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
