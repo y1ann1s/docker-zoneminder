@@ -10,8 +10,10 @@ Docker container for [zoneminder v1.31.1][3]
 
 To install docker in Ubuntu 16.04 use the commands:
 
-$ sudo apt-get update
-$ sudo wget -qO- <https://get.docker.com/> | sh
+```bash
+sudo apt-get update
+sudo wget -qO- <https://get.docker.com/> | sh
+```
 
  To install docker in other operating systems check [docker online documentation][4]
 
@@ -66,7 +68,7 @@ $ docker exec -it container_id /bin/bash
 
 ## Docker Swarm deployment
 
-This projects is implemented to be deployed as docker-compose o swarm stack. Here an example of the docker swarm stack
+This projects is implemented to be deployed as docker-compose or swarm stack. Here an example of the docker swarm stack
 
 ```yml
 version: '3.2'
@@ -223,14 +225,14 @@ to deploy above stack first initialize your swarm at least with one node for tes
 ```bash
 docker swarm init
 docker stack deploy -c docker-compose.yml zm
-echo "wait for a few seconds to MySQL start for a first time"
+echo "wait for a few seconds to MySQL start for the first time"
 docker service scale zm_web=1
 echo "go to ZoneMinder console Options-Servers and declare node.0->stream0.localhost and node.1 ... node.3, finally start"
 docker service scale zm_stream=3
 docker service ls
 ```
 
-the image used for the load balancer is modified version of dockercloud/haproxy specially targeted for
+the docker image used for load balancing is a modified version of dockercloud/haproxy specially targeted for
 using {{.Task.Slot}} placeholder in DNS name resolution, see more details at
 
 - <https://github.com/marcelo-ochoa/dockercloud-haproxy.git>
