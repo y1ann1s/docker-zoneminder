@@ -1,4 +1,5 @@
-# quantumobject/docker-zoneminder:1.31.1 build from https://github.com/marcelo-ochoa/docker-zoneminder
+# quantumobject/docker-zoneminder:1.31.44 build from https://github.com/marcelo-ochoa/docker-zoneminder
+# docker build -t "quantumobject/docker-zoneminder:1.31.44" -f Dockerfile .
 # dockercloud/haproxy:1.6.7.1 build from https://github.com/marcelo-ochoa/dockercloud-haproxy
 version: '3.2'
 
@@ -25,7 +26,7 @@ services:
        max_attempts: 3
        window: 120s
   web:
-    image: quantumobject/docker-zoneminder:1.31.1
+    image: quantumobject/docker-zoneminder:1.31.44
     networks:
       - net
     volumes:
@@ -50,7 +51,7 @@ services:
     depends_on:
       - db 
   stream:
-    image: quantumobject/docker-zoneminder:1.31.1
+    image: quantumobject/docker-zoneminder:1.31.44
     networks:
       - net
     volumes:
