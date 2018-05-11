@@ -1,6 +1,6 @@
 # docker-zoneminder
 
-Docker container for [zoneminder v1.31.1][3]
+Docker container for [zoneminder v1.31.44][3]
 
 "ZoneMinder the top Linux video camera security and surveillance solution. ZoneMinder is intended for use in single or multi-camera video security applications, including commercial or home CCTV, theft prevention and child, family member or home monitoring and other domestic care scenarios such as nanny cam installations. It supports capture, analysis, recording, and monitoring of video data coming from one or more video or network cameras attached to a Linux system. ZoneMinder also support web and semi-automatic control of Pan/Tilt/Zoom cameras using a variety of protocols. It is suitable for use as a DIY home video security system and for commercial or professional video security and surveillance. It can also be integrated into a home automation system via X.10 or other protocols. If you're looking for a low cost CCTV system or a more flexible alternative to cheap DVR systems then why not give ZoneMinder a try?"
 
@@ -22,7 +22,7 @@ sudo wget -qO- <https://get.docker.com/> | sh
 To run container use the command below:
 
 ```bash
-docker run -d --shm-size=4096m -p 80:80 quantumobject/docker-zoneminder:1.31.1
+docker run -d --shm-size=4096m -p 80:80 quantumobject/docker-zoneminder:1.31.44
 ```
 
 **  --shm-size=4096m  ==> work only after docker version 1.10
@@ -33,7 +33,7 @@ To run with MySQL in a separate container use the command below:
 docker network create net
 docker run -d -e TZ=America/Argentina/Buenos_Aires -e MYSQL_USER=zmuser -e MYSQL_PASSWORD=zmpass -e MYSQL_DATABASE=zm -e MYSQL_ROOT_PASSWORD=mysqlpsswd -e MYSQL_ROOT_HOST=% --net net --name db mysql/mysql-server:5.7
 echo "wait until MySQL startup..."
-docker run -d -e TZ=America/Argentina/Buenos_Aires -e ZM_DB_HOST=db --net net --name zm -p 80:80 quantumobject/docker-zoneminder:1.31.1
+docker run -d -e TZ=America/Argentina/Buenos_Aires -e ZM_DB_HOST=db --net net --name zm -p 80:80 quantumobject/docker-zoneminder:1.31.44
 ```
 
 ## Set the timezone per environment variable
@@ -100,7 +100,7 @@ services:
        max_attempts: 3
        window: 120s
   web:
-    image: quantumobject/docker-zoneminder:1.31.1
+    image: quantumobject/docker-zoneminder:1.31.44
     networks:
       - net
     volumes:
@@ -125,7 +125,7 @@ services:
     depends_on:
       - db
   stream:
-    image: quantumobject/docker-zoneminder:1.31.1
+    image: quantumobject/docker-zoneminder:1.31.44
     networks:
       - net
     volumes:
