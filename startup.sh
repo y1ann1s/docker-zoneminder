@@ -3,33 +3,38 @@
 
 set -e
 
-if [ -f /etc/configured ]; then
-        echo 'already configured'
-        
+#trays to fix problem with https://github.com/QuantumObject/docker-zoneminder/issues/22
+chown www-data /dev/shm
+mkdir -p /var/run/zm
+chown www-data:www-data /var/run/zm
+
+#to fix problem with data.timezone that appear at 1.28.108 for some reason
+sed  -i "s|\;date.timezone =|date.timezone = \"${TZ:-America/New_York}\"|" /etc/php/7.0/apache2/php.ini
+#if ZM_DB_HOST variable is provided in container use it as is, if not left as localhost
+ZM_DB_HOST=${ZM_DB_HOST:-localhost}
+sed  -i "s|ZM_DB_HOST=localhost|ZM_DB_HOST=$ZM_DB_HOST|" /etc/zm/zm.conf
+#if ZM_SERVER_HOST variable is provided in container use it as is, if not left 02-multiserver.conf unchanged
+if [ -v ZM_SERVER_HOST ]; then sed -i "s|#ZM_SERVER_HOST=|ZM_SERVER_HOST=${ZM_SERVER_HOST}|" /etc/zm/conf.d/02-multiserver.conf; fi
+
+# Returns true once mysql can connect.
+mysql_ready() {
+  mysqladmin ping --host=$ZM_DB_HOST --user=root --password=mysqlpsswd > /dev/null 2>&1
+}
+
+if [ -f /var/cache/zoneminder/configured ]; then
+        echo 'already configured.'
+        while !(mysql_ready)
+        do
+          sleep 3
+          echo "waiting for mysql ..."
+        done
         /sbin/zm.sh&
 else
-        #to fix problem with data.timezone that appear at 1.28.108 for some reason
-        sed  -i "s|\;date.timezone =|date.timezone = \"${TZ:-America/New_York}\"|" /etc/php/7.0/apache2/php.ini
-
+        
         #configuration for zoneminder
-        #trays to fix problem with https://github.com/QuantumObject/docker-zoneminder/issues/22
-        chown www-data /dev/shm
         #cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
         #this only happends if -V was used and data was not from another container for that reason need to recreate the db.
-        if [ ! -f /var/lib/mysql/ibdata1 ]; then
-          mysql_install_db
-          #create database for zm
-          /usr/bin/mysqld_safe &
-          sleep 7s
-          mysqladmin -u root password mysqlpsswd
-          mysqladmin -u root -pmysqlpsswd reload
-          mysqladmin -u root -pmysqlpsswd create zm
-          echo "grant select,insert,update,delete,create,alter,lock on zm.* to 'zmuser'@localhost identified by 'zmpass'; flush privileges; " | mysql -u root -pmysqlpsswd
-          echo "SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION';" | mysql -u root -pmysqlpsswd
-          mysql -u root -pmysqlpsswd < /usr/share/zoneminder/db/zm_create.sql
-          mysql -e "grant select,insert,update,delete,create,alter,lock tables on zm.* to 'zmuser'@localhost identified by 'zmpass';" -u root -pmysqlpsswd
-          killall mysqld
-          sleep 5s
+
         fi
         
         #check if Directory inside of /var/cache/zoneminder are present.
@@ -40,12 +45,11 @@ else
         fi
         
         chown -R root:www-data /var/cache/zoneminder /etc/zm/zm.conf
-        chown -R mysql:mysql /var/lib/mysql 
         chmod -R 770 /var/cache/zoneminder /etc/zm/zm.conf
         
         #needed to fix problem with ubuntu ... and cron 
         update-locale
-        date > /etc/configured
+        date > /var/cache/zoneminder/configured
         
         /sbin/zm.sh&
 fi
