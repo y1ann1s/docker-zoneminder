@@ -28,6 +28,7 @@ if [ -f /var/cache/zoneminder/configured ]; then
           sleep 3
           echo "waiting for mysql ..."
         done
+     
         /sbin/zm.sh&
 else 
         #check if Directory inside of /var/cache/zoneminder are present.
@@ -39,7 +40,9 @@ else
         
         chown -R root:www-data /var/cache/zoneminder /etc/zm/zm.conf
         chmod -R 770 /var/cache/zoneminder /etc/zm/zm.conf
-        
+        echo "SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION';" | mysql -u root -pmysqlpsswd -h $ZM_DB_HOST
+        mysql -u root -pmysqlpsswd -h $ZM_DB_HOST < /usr/share/zoneminder/db/zm_create.sql   
+        date > /var/cache/zoneminder/dbcreated
         #needed to fix problem with ubuntu ... and cron 
         update-locale
         date > /var/cache/zoneminder/configured
