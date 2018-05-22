@@ -29,14 +29,7 @@ if [ -f /var/cache/zoneminder/configured ]; then
           echo "waiting for mysql ..."
         done
         /sbin/zm.sh&
-else
-        
-        #configuration for zoneminder
-        #cp /etc/mysql/mysql.conf.d/mysqld.cnf /usr/my.cnf
-        #this only happends if -V was used and data was not from another container for that reason need to recreate the db.
-
-        fi
-        
+else 
         #check if Directory inside of /var/cache/zoneminder are present.
         if [ ! -d /var/cache/zoneminder/events ]; then
            mkdir -p /var/cache/zoneminder/events
