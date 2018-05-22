@@ -22,13 +22,6 @@ RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /et
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
 
-# to add mysqld deamon to runit
-RUN mkdir -p /etc/service/mysqld /var/log/mysqld ; sync 
-COPY mysqld.sh /etc/service/mysqld/run
-RUN chmod +x /etc/service/mysqld/run \
-    && cp /var/log/cron/config /var/log/mysqld/ \
-    && chown -R mysql /var/log/mysqld
-
 # to add apache2 deamon to runit
 RUN mkdir -p /etc/service/apache2  /var/log/apache2 ; sync 
 COPY apache2.sh /etc/service/apache2/run
@@ -68,7 +61,7 @@ RUN cd /usr/src \
     && rm /usr/src/cambozola-latest.tar.gz \
     && rm -R /usr/src/cambozola-0.936
 
-VOLUME /var/backups /var/lib/mysql /var/cache/zoneminder
+VOLUME /var/backups /var/cache/zoneminder
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 80
