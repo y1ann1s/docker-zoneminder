@@ -46,6 +46,6 @@ else
         #needed to fix problem with ubuntu ... and cron 
         update-locale
         date > /var/cache/zoneminder/configured
-        
+        zmupdate.pl
         /sbin/zm.sh&
 fi
