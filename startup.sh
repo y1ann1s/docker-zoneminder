@@ -16,7 +16,7 @@ sed  -i "s|ZM_DB_HOST=localhost|ZM_DB_HOST=$ZM_DB_HOST|" /etc/zm/zm.conf
 #if MYSQL_ROOT_PASSWORD variable is provided in container use it as is, if not left as mysqlpsswd
 MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-mysqlpsswd}
 sed  -i "s|MYSQL_ROOT_PASSWORD=mysqlpsswd|MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD|" /etc/zm/zm.conf
-if ZM_SERVER_HOST variable is provided in container use it as is, if not left 02-multiserver.conf unchanged
+#if ZM_SERVER_HOST variable is provided in container use it as is, if not left 02-multiserver.conf unchanged
 if [ -v ZM_SERVER_HOST ]; then sed -i "s|#ZM_SERVER_HOST=|ZM_SERVER_HOST=${ZM_SERVER_HOST}|" /etc/zm/conf.d/02-multiserver.conf; fi
 
 # Returns true once mysql can connect.
