@@ -9,7 +9,7 @@ ENV TZ America/New_York
 # Installation of nesesary package/software for this containers...
 RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME` main" >> /etc/apt/sources.list  \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 776FFB04 \
-    && echo $TZ > /etc/timezone && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends mariadb-server \
+    && echo $TZ > /etc/timezone && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
                                         libvlc-dev  \
                                         libvlccore-dev\
                                         libapache2-mod-perl2 \
@@ -18,6 +18,11 @@ RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /et
                                         dialog \
                                         ntpdate \
                                         ffmpeg \
+					libyaml-perl \
+					libjson-perl \
+					make \	
+					gcc \
+					build-essential \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -61,6 +66,17 @@ RUN cd /usr/src \
     && mv cambozola-0.936/dist/cambozola.jar /usr/share/zoneminder/www  \
     && rm /usr/src/cambozola-latest.tar.gz \
     && rm -R /usr/src/cambozola-0.936
+
+# add stuff or zmeventnotification.pl
+RUN cd /bin/ \
+    && wget https://raw.githubusercontent.com/pliablepixels/zmeventserver/master/zmeventnotification.pl \
+    && chmod a+x zmeventnotification.pl
+RUN perl -MCPAN -e "install Digest::SHA1" 
+RUN perl -MCPAN -e "install Crypt::MySQL"
+RUN perl -MCPAN -e "install Config::IniFiles"
+RUN perl -MCPAN -e "install Net::WebSocket::Server"
+RUN perl -MCPAN -e "install LWP::Protocol::https"
+EXPOSE 9000
 
 VOLUME /var/backups /var/cache/zoneminder
 # to allow access from outside of the container  to the container service
