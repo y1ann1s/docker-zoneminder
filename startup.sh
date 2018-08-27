@@ -31,8 +31,8 @@ if [ -f /var/cache/zoneminder/configured ]; then
           sleep 3
           echo "waiting for mysql ..."
         done
-     
-        /sbin/zm.sh&
+        rm -rf /var/run/zm/* 
+	/sbin/zm.sh&
 else 
         #check if Directory inside of /var/cache/zoneminder are present.
         if [ ! -d /var/cache/zoneminder/events ]; then
@@ -50,5 +50,6 @@ else
         update-locale
         date > /var/cache/zoneminder/configured
         zmupdate.pl
+        rm -rf /var/run/zm/* 
         /sbin/zm.sh&
 fi
