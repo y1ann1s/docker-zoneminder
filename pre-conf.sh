@@ -7,9 +7,6 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y -q php-gd zoneminder
 echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
 ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
 
-#checking if zoneminder.conf change with the new version .... at fix_issue 
-#cp /zoneminder.conf /etc/apache2/conf-available/zoneminder.conf
-
 a2enmod cgi
 a2enconf zoneminder
 chown -R www-data:www-data /usr/share/zoneminder/
