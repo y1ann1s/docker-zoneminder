@@ -36,9 +36,7 @@ if [ -f /var/cache/zoneminder/configured ]; then
 else 
         #check if Directory inside of /var/cache/zoneminder are present.
         if [ ! -d /var/cache/zoneminder/events ]; then
-           mkdir -p /var/cache/zoneminder/events
-           mkdir -p /var/cache/zoneminder/images
-           mkdir -p /var/cache/zoneminder/temp
+           mkdir -p /var/cache/zoneminder/{events,images,temp,cache}
         fi
         
         chown -R root:www-data /var/cache/zoneminder /etc/zm/zm.conf
