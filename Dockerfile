@@ -52,7 +52,6 @@ RUN chmod +x /sbin/pre-conf ; sync \
 ## for example to create backup for database with convitation of VOLUME   dockers-bash container_ID backup_mysql
 COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
-VOLUME /var/backups
 
 RUN cd /usr/src \
     && wget http://www.andywilcock.com/code/cambozola/cambozola-latest.tar.gz \
