@@ -74,12 +74,11 @@ RUN perl -MCPAN -e "install Crypt::MySQL"
 RUN perl -MCPAN -e "install Config::IniFiles"
 RUN perl -MCPAN -e "install Net::WebSocket::Server"
 RUN perl -MCPAN -e "install LWP::Protocol::https"
-EXPOSE 9000
 
 VOLUME /var/backups /var/cache/zoneminder
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
-EXPOSE 80
+EXPOSE 80 9000 443 6802
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
