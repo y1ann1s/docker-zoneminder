@@ -48,7 +48,7 @@ RUN chmod +x /etc/my_init.d/startup.sh
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
-COPY default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
+COPY default-ssl-apache.conf /etc/apache2/sites-enabled/default-ssl.conf
 COPY pre-conf.sh /sbin/pre-conf
 RUN chmod +x /sbin/pre-conf ; sync \
     && /bin/bash -c /sbin/pre-conf \
