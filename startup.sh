@@ -32,6 +32,7 @@ if [ -f /config/zmeventnotification.ini ]; then
    echo "Moving zmeventnotification.ini"
    if [ ! -d /var/cache/zoneminder/events ]; then
       mkdir -p /etc/zm/
+   fi
    ln -sf /config/zmeventnotification.ini /etc/zm/zmeventnotification.ini
 fi
 
