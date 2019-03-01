@@ -30,7 +30,9 @@ mysql_ready() {
 # Handle the zmeventnotification.ini file
 if [ -f /config/zmeventnotification.ini ]; then
    echo "Moving zmeventnotification.ini"
-   ln -sf /config/zmeventnotification.ini /etc/zmeventnotification.ini
+   if [ ! -d /var/cache/zoneminder/events ]; then
+      mkdir -p /etc/zm/
+   ln -sf /config/zmeventnotification.ini /etc/zm/zmeventnotification.ini
 fi
 
 # Handle the apache ssl configuration file
