@@ -67,7 +67,7 @@ RUN cd /usr/src \
     && rm -R /usr/src/cambozola-0.936
 
 # add stuff or zmeventnotification.pl
-RUN cd /bin/ \
+RUN cd /usr/bin/ \
     && wget https://raw.githubusercontent.com/pliablepixels/zmeventserver/master/zmeventnotification.pl \
     && chmod a+x zmeventnotification.pl \
     && mkdir -p /var/lib/zmeventnotification/push/ \
