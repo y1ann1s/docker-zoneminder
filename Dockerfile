@@ -71,7 +71,7 @@ RUN cd /usr/bin/ \
     && wget https://raw.githubusercontent.com/pliablepixels/zmeventserver/master/zmeventnotification.pl \
     && chmod a+x zmeventnotification.pl \
     && mkdir -p /var/lib/zmeventnotification/push/ \
-    && chown -R www-data:www-data /var/lib/zmeventnotification/push 
+    && chown -R www-data:www-data /var/lib/zmeventnotification
 RUN perl -MCPAN -e "install Digest::SHA1" 
 RUN perl -MCPAN -e "install Crypt::MySQL"
 RUN perl -MCPAN -e "install Config::IniFiles"
