@@ -77,6 +77,7 @@ RUN perl -MCPAN -e "install Crypt::MySQL"
 RUN perl -MCPAN -e "install Config::IniFiles"
 RUN perl -MCPAN -e "install Net::WebSocket::Server"
 RUN perl -MCPAN -e "install LWP::Protocol::https"
+RUN perl -MCPAN -e "install Net::MQTT::Simple"
 
 VOLUME /var/backups /var/cache/zoneminder /config
 # to allow access from outside of the container  to the container service
