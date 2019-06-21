@@ -48,7 +48,6 @@ RUN chmod +x /etc/my_init.d/startup.sh
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
-COPY default-ssl-apache.conf /etc/apache2/sites-enabled/default-ssl.conf
 COPY pre-conf.sh /sbin/pre-conf
 RUN chmod +x /sbin/pre-conf ; sync \
     && /bin/bash -c /sbin/pre-conf \
@@ -81,7 +80,7 @@ RUN perl -MCPAN -e "install LWP::Protocol::https"
 VOLUME /var/backups /var/cache/zoneminder /config
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
-EXPOSE 80 9000 443 6802
+EXPOSE 80 9000 6802
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
