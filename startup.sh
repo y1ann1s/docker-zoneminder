@@ -53,6 +53,11 @@ else
         
         chown -R root:www-data /var/cache/zoneminder /etc/zm/zm.conf
         chmod -R 770 /var/cache/zoneminder /etc/zm/zm.conf
+        while !(mysql_ready)
+        do
+          sleep 3
+          echo "waiting for mysql ..."
+        done
         echo "SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION';" | mysql -u $MYSQL_ROOT -p$MYSQL_ROOT_PASSWORD -h $ZM_DB_HOST
         mysql -u $MYSQL_ROOT -p$MYSQL_ROOT_PASSWORD -h $ZM_DB_HOST < /usr/share/zoneminder/db/zm_create.sql   
         date > /var/cache/zoneminder/dbcreated
