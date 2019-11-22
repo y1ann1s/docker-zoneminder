@@ -5,14 +5,14 @@ version: '3.2'
 
 services:
   db:
-    image: mysql/mysql-server:5.7
+    image: mysql/mysql-server
     networks:
       - net
     volumes:
       - /home/data/zm/mysql:/var/lib/mysql
       - $PWD/conf/mysql:/etc/mysql:ro
     environment:
-     - TZ=America/Argentina/Buenos_Aires
+     - TZ=Europe/Athens
      - MYSQL_USER=zmuser
      - MYSQL_PASSWORD=zmpass
      - MYSQL_DATABASE=zm
@@ -26,7 +26,7 @@ services:
        max_attempts: 3
        window: 120s
   web:
-    image: quantumobject/docker-zoneminder:1.31.44
+    image: quantumobject/docker-zoneminder
     networks:
       - net
     volumes:
@@ -36,7 +36,7 @@ services:
       - type: tmpfs
         target: /dev/shm
     environment:
-     - TZ=America/Argentina/Buenos_Aires
+     - TZ=Europe/Athens
      - VIRTUAL_HOST=zm.localhost, stream0.localhost
      - SERVICE_PORTS="80"
      - ZM_SERVER_HOST=node.0
@@ -51,7 +51,7 @@ services:
     depends_on:
       - db 
   stream:
-    image: quantumobject/docker-zoneminder:1.31.44
+    image: quantumobject/docker-zoneminder
     networks:
       - net
     volumes:
@@ -61,7 +61,7 @@ services:
       - type: tmpfs
         target: /dev/shm
     environment:
-     - TZ=America/Argentina/Buenos_Aires
+     - TZ=Europe/Athens
      - VIRTUAL_HOST=stream{{.Task.Slot}}.localhost
      - SERVICE_PORTS="80"
      - ZM_SERVER_HOST=node.{{.Task.Slot}}
